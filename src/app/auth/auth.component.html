@@ -1,0 +1,12 @@
+<!-- *ngIf permet de conditionné l'affichage de la balise -->
+<h2>Authentification</h2>
+<div class="container">
+    <button class="btn btn-success" 
+                style="margin:1em;" 
+                *ngIf="!authStatus"
+                (click)="onSignIn()">Sign In</button>
+    <button class="btn btn-danger" 
+            style="margin:1em;" 
+            *ngIf="authStatus"
+            (click)="onSignOut()">Sign Out</button>
+</div>

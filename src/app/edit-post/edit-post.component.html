@@ -1,0 +1,50 @@
+<!-- 
+    Ici nous avons un formulaire qui a été concu avec la Méthode Template 
+    C'est la méthode classique et la plus simple à implémenter
+-->
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <!-- l'event ngSubmit est activé une fois que l'on clique sur le button. 
+        # + nom (au choix) est une référence local qui permet à Angular 
+        de faire une référence au DOM depuis le DOM.
+        la valeur de #form est passé dans le ngSubmit-->
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="form-group">
+                <label for="title">Post Title</label>
+                <!-- la proprieté name fait référence à la propriété for du label
+                ngModel qui va enregistrer ce controle de formulaire auprès d'Angular -->
+                <input type="text" 
+                       id="title" 
+                       class="form-control"
+                       name="title"
+                       ngModel
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea name="content" 
+                          id="content" 
+                          cols="30" 
+                          rows="10"
+                          class="form-control"
+                          ngModel
+                          required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="like">Content status</label>
+                <!-- avec le ngModel, on met une value par défaut -->
+                <select id="like" 
+                        class="form-control"
+                        name="like"
+                        [ngModel]="defaultOnLike">
+                    <option value="like">Like</option>
+                    <option value="unlike">Unike</option>
+                </select>
+            </div>
+            <!-- disabled indique que si le formulaire (f) est mal rempli, on ne peut pas le soumettre -->
+            <button type="submit" 
+                    class="btn btn-primary"
+                    [disabled]="f.invalid">Enregistrer</button>
+        </form>
+    </div>
+</div>

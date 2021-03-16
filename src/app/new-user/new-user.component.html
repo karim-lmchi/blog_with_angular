@@ -1,0 +1,61 @@
+<!-- 
+    Ici nous avons un formulaire qui a été  concu avec la Méthode Réactive 
+    C'est une méthode un peu plus compliqué mais la plus efficace
+-->
+<div class="col-sm-8 col-sm-offset-2">
+    <!-- 
+        formGroup va lier l'objet userForm que l'on a créé dans le TS.
+        En utilisant la méthode réactive, on a pas besoin de référence local (#) pour le onSubmitForm(); ceci est déjà gérer par formGroup
+    -->
+    <form [formGroup]="userForm"
+          (ngSubmit)="onSubmitForm()">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <!-- formControlName doit correspondre au control mis dans initForm() dans le TS -->
+            <input type="text" 
+                   class="form-control" 
+                   id="firstName"
+                   formControlName="firstName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" 
+                   class="form-control" 
+                   id="lastName"
+                   formControlName="lastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" 
+                   class="form-control" 
+                   id="email"
+                   formControlName="email">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" 
+                    class="form-control"
+                    formControlName="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <!-- formArrayName indique à Angular que tout ce qu'il y a dans la div a un rapport avec un formArray -->
+        <div formArrayName='hobbies'>
+            <h3>Your hobbies</h3>
+            <div class="form-group"
+                  *ngFor='let hobbyControl of getHobbies().controls; let i = index'>
+                <input type="text" 
+                       class="form-control"
+                       [formControlName]='i'>
+            </div>
+            <button class="btn btn-success"
+                    type="button"
+                    (click)="onAddHobby()">Add Hobby</button>
+        </div>
+        <!-- Si le formulaire n'est pas valide, le bouton n'est pas activé -->
+        <button class="btn btn-primary" 
+                type="submit"
+                [disabled]="userForm.invalid">Submit</button>
+    </form>
+</div>

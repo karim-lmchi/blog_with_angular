@@ -1,0 +1,27 @@
+<!-- *ngFor permet de boucler sur la balise -->
+<div class="col-xs-12">
+        
+    <h2>POSTS</h2>
+    
+    <app-blog-bloc *ngFor="let post of posts; let i = index"
+                   [postIndex]="i"
+                   [titleBloc]="post.titleBloc"
+                   [blocText]="post.blocText"
+                   [like]="post.like"
+                   [ngStyle]="{ background:getAllPostBlocColor() }"
+                   [id]="post.id"></app-blog-bloc>
+
+    <button class="btn btn-success" 
+            style="margin:1em;" 
+            (click)="onLikeAll()">Like All</button>
+    <button class="btn btn-danger" 
+            style="margin:1em;" 
+            (click)="onUnlikeAll()">Unlike All</button>
+    <button class="btn btn-primary"
+            style="margin:1em;"
+            (click)="onSave()">Save</button>
+    <button class="btn btn-primary"
+            style="margin:1em;"
+            (click)="onFetch()">Fetch</button>
+
+</div>

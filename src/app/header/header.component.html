@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <!-- routerLink est l'équivalent de href pour le ne pas avoir de rechargement de page lors du click -->
+        <!-- routerLinkActive permet d'activer une class bootstrap pour le link actif -->
+        <!-- <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li> -->
+        <li routerLinkActive="active"><a routerLink="blogs">Blogs</a></li>
+        <li routerLinkActive="active"><a routerLink="edit">Edit</a></li>
+        <li routerLinkActive="active"><a routerLink="user">User</a></li>
+        <li routerLinkActive="active"><a routerLink="profil">Profil</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active"
+            *ngIf='!isAuth'>
+          <a routerLink="auth/signup">SignUp</a>
+        </li>
+        <li routerLinkActive="active"
+            *ngIf='!isAuth'>
+          <a routerLink="auth/signin">SignIn</a>
+        </li>
+        <li routerLinkActive="active">
+          <a (click)="onSignOut()"
+              *ngIf="isAuth"
+              style="cursor: pointer;">SignOut</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
